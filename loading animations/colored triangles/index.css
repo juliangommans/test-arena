@@ -1,0 +1,11 @@
+.triangulate {
+  margin: auto;
+  height: 5px;
+  width: 5px;
+  background-color: light-grey;
+  border-top: 15px solid green;
+  border-bottom: 15px solid red;
+  border-left: 15px solid blue;
+  border-right: 15px solid yellow;
+  border-radius: 30px;
+}
