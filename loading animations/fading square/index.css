@@ -1,0 +1,7 @@
+.square {
+  margin: auto;
+  height: 0px;
+  width: 0px;
+  opacity: 1;
+  border: 30px dotted blue;
+}

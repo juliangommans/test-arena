@@ -9,7 +9,7 @@ $(document).ready(function(){
                    'transform' : 'rotate('+ degrees +'deg)'});
   };
 
-  setInterval(function(){
+  function animate(){
     $('.triangulate').animate({
       borderWidth: '30px',
       opacity: 0.3,
@@ -20,7 +20,8 @@ $(document).ready(function(){
     duration: 1500,
       step: function(){
         rotation += 1.6;
-      $('.triangulate').rotate(rotation)}
+      $('.triangulate').rotate(rotation);
+      };
     });
 
     $('.triangulate').animate({
@@ -33,8 +34,14 @@ $(document).ready(function(){
     duration: 1500,
       step: function(){
         rotation += 1.6;
-      $('.triangulate').rotate(rotation)}
+      $('.triangulate').rotate(rotation);
+      };
     });
+  }
+  animate();
+
+  setInterval(function(){
+    animate();
   }, 3000);
 
-})
+});
