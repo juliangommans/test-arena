@@ -1,0 +1,16 @@
+.output {
+  width: 700px;
+}
+
+div {
+  width: 200px;
+  margin: auto;
+}
+
+td {
+  background-color: #BFAAAA;
+}
+
+tr {
+  background-color: #BFAAAA;
+}

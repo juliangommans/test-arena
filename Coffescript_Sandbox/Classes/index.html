@@ -4,8 +4,40 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel='stylesheet' type='text/css' href='index.css'>
     <script type='text/javascript' src='index.js'></script>
+    <script type='text/javascript' src='class.js'></script>
   </head>
     <body>
-
+      <table>
+        <tr>
+          <th><h3>Create an animal<h3></th>
+          <th><h3> Output </h3></th>
+        </tr>
+        <tr>
+        <td>
+          <div>
+            <form id="animal">
+              Name <br>
+                <input type="text" name="animal" placeholder="Name of animal">
+              <br>Species <br>
+                <select name="species" id="batman">
+                  <option value="mammal">Mammal</option>
+                  <option value="reptile">Reptile</option>
+                  <option value="avian">Avian</option>
+                </select>
+              <br>Number of Legs<br>
+                <input type='number' name='legs'>
+              <br><br>
+                <input type="submit" value="Submit">
+            </form>
+          </div>
+        </td>
+        <td>
+          <div class="output">
+            <ul>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    </table>
     </body>
 </html>
