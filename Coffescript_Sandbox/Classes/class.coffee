@@ -7,7 +7,7 @@ class Animal
 class Mammal extends Animal
 
   legs: (amount) ->
-    speed = parseInt(amount)*15
+    speed = parseInt(amount)*12.5
     super("<li><font color='red'>#{@name} has #{amount} legs and because they're a mammal, can travel at #{speed} kilometers per hour.</font></li>")
 
 class Reptile extends Animal
@@ -21,3 +21,4 @@ class Avian extends Animal
   legs: (amount) ->
     speed = 50
     super("<li><font color='blue'>#{@name} has #{amount} legs and because they're Avian, can travel at #{speed} kilometers per hour.</font></li>")
+

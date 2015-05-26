@@ -9,7 +9,7 @@ Animal = (function() {
   }
 
   Animal.prototype.legs = function(text) {
-    return $("ul").append("" + text);
+    return $("ul").append(text + " " + (runHandlebar()) + ".</font></li>");
   };
 
   return Animal;
@@ -26,7 +26,7 @@ Mammal = (function(superClass) {
   Mammal.prototype.legs = function(amount) {
     var speed;
     speed = parseInt(amount) * 12.5;
-    return Mammal.__super__.legs.call(this, "<li><font color='red'>" + this.name + " has " + amount + " legs and because they're a mammal, can travel at " + speed + " kilometers per hour.</font></li>");
+    return Mammal.__super__.legs.call(this, "<li><font color='red'>" + this.name + " has " + amount + " legs, they an travel at " + speed + " kilometers per hour");
   };
 
   return Mammal;
@@ -43,7 +43,7 @@ Reptile = (function(superClass) {
   Reptile.prototype.legs = function(amount) {
     var speed;
     speed = parseInt(amount) * 5 + 40;
-    return Reptile.__super__.legs.call(this, "<li><font color='green'>" + this.name + " has " + amount + " legs and because they're a reptile, can travel at " + speed + " kilometers per hour.</font></li>");
+    return Reptile.__super__.legs.call(this, "<li><font color='green'>" + this.name + " has " + amount + " legs, they can travel at " + speed + " kilometers per hour");
   };
 
   return Reptile;
@@ -60,7 +60,7 @@ Avian = (function(superClass) {
   Avian.prototype.legs = function(amount) {
     var speed;
     speed = 50;
-    return Avian.__super__.legs.call(this, "<li><font color='blue'>" + this.name + " has " + amount + " legs and because they're Avian, can travel at " + speed + " kilometers per hour.</font></li>");
+    return Avian.__super__.legs.call(this, "<li><font color='blue'>" + this.name + " has " + amount + " legs, they can travel at " + speed + " kilometers per hour");
   };
 
   return Avian;
