@@ -36,6 +36,9 @@ class Combat
       damage_dealt(@opponent, @player)
     else
       move = CombatLogs.player_move_choice(@player)
+      p "============"
+      p move
+      p "============"
       @damage = move
     end
   end

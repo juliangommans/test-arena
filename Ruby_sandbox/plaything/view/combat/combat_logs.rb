@@ -7,12 +7,13 @@ module CombatLogs
     end
     @answer = gets.chomp
     answer_checker(player)
+    return @answer.downcase
   end
 
   def self.answer_checker(player)
     @move_names = []
     get_move_names(player)
-    until @move_names.include?(@answer.downcase.gsub(/\s+/, ""))
+    until @move_names.include?(@answer.downcase.gsub(/\s+/, " "))
       puts "please enter a correct move name"
       @answer = gets.chomp
     end
@@ -20,7 +21,7 @@ module CombatLogs
 
   def self.get_move_names(player)
     player.move_list.each do |move|
-      @move_names.push(move[:name].downcase.gsub(/\s+/, ""))
+      @move_names.push(move[:name].downcase.gsub(/\s+/, " "))
     end
   end
 

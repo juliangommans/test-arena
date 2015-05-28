@@ -29,7 +29,7 @@ module TierOneFireMoves
   end
 
   def self.firey_shell_1
-    @firey_shell_1 = { name: "Firey Shell",
+    @firey_shell_1 = { name: "Firey shell",
         type: "utility",
         element: "fire",
         power: 3.0,
@@ -43,7 +43,7 @@ module TierOneFireMoves
   end
 
   def self.molten_swipe_1
-    @molten_swipe_1 = { name: "Molten Swipe",
+    @molten_swipe_1 = { name: "Molten swipe",
         type: "damage",
         element: "fire",
         power: 15.0,
@@ -57,7 +57,7 @@ module TierOneFireMoves
   end
 
   def self.pyro_slap_1
-    @pyro_slap_1 = { name: "Pyro Slap",
+    @pyro_slap_1 = { name: "Pyro slap",
         type: "damage",
         element: "fire",
         power: 25.0,
