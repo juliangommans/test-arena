@@ -1,7 +1,10 @@
-@singe_1 = { name: "Singe",
+module TierOneFireMoves
+
+  def self.singe_1
+    @singe_1 = { name: "Singe",
           type: "damage",
           element: "fire",
-          power: 10,
+          power: 10.0,
           cost: 2,
           effect1: ["dot", "fire", 1, 1, 3],
           effect2: "",
@@ -9,11 +12,13 @@
           rank: 1,
           tier: 1
           }
+  end
 
-@warmth_1 = { name: "Warmth",
+  def self.warmth_1
+    @warmth_1 = { name: "Warmth",
         type: "heal",
         element: "fire",
-        power: 5,
+        power: 5.0,
         cost: 1,
         effect1: [],
         effect2: "",
@@ -21,11 +26,13 @@
         rank: 1,
         tier: 1
         }
+  end
 
-@firey_shell_1 = { name: "Firey Shell",
+  def self.firey_shell_1
+    @firey_shell_1 = { name: "Firey Shell",
         type: "utility",
         element: "fire",
-        power: 3,
+        power: 3.0,
         cost: 3,
         effect1: ["reflect",1,3],
         effect2: "",
@@ -33,11 +40,13 @@
         rank: 1,
         tier: 1
       }
+  end
 
-@molten_swipe_1 = { name: "Molten Swipe",
+  def self.molten_swipe_1
+    @molten_swipe_1 = { name: "Molten Swipe",
         type: "damage",
         element: "fire",
-        power: 15,
+        power: 15.0,
         cost: 2,
         effect1: ["debuff", "def", 1, 1, 3],
         effect2: "",
@@ -45,12 +54,13 @@
         rank: 1,
         tier: 1
       }
+  end
 
-
-@pyro_slap_1 = { name: "Pyro Slap",
+  def self.pyro_slap_1
+    @pyro_slap_1 = { name: "Pyro Slap",
         type: "damage",
         element: "fire",
-        power: 25,
+        power: 25.0,
         cost: 3,
         effect1: [],
         effect2: "",
@@ -58,3 +68,7 @@
         rank: 1,
         tier: 1
       }
+  end
+
+end
+

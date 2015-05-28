@@ -1,9 +1,13 @@
-Dir['./**/*.rb'].each{ |f| require f }
-
+Dir['./**/*.rb'].each do |f|
+  unless f == "./development_arena.rb"
+    require f
+  end
+end
 
 bob = Bear.new("lol")
-bob.display_stats
-puts bob.name
-bob.move_list.each do |x|
-  puts x
-end
+steve = Tiger.new("boo")
+start = Combat.new(bob,steve)
+#start.test
+start.start
+
+

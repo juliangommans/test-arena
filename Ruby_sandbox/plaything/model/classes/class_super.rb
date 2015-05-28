@@ -1,9 +1,13 @@
-class Class_Super
+class ClassSuper
   attr_accessor :tot_hp, :tot_atk, :tot_def, :tot_spd
   attr_accessor :hp, :atk, :def, :spd, :name
 
   def initialize(name)
+    @spec_1 = ""
+    @spec_2 = ""
+    @stats = []
     @name = name
+    @action_points = 4
     set_total_stats
   end
 
@@ -23,6 +27,7 @@ class Class_Super
 
   def display_stats
     puts "#{@name}'s current stats are"
+    puts "---------"
     puts "#{@hp}: health"
     puts "#{@atk}: attack"
     puts "#{@def}: defense"
