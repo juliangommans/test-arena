@@ -2,16 +2,16 @@ module TierOneFireMoves
 
   def self.singe_1
     @singe_1 = { name: "Singe",
-          type: "damage",
-          element: "fire",
-          power: 10.0,
-          cost: 2,
-          effect1: ["dot", "fire", 1, 1, 3],
-          effect2: "",
-          cooldown: 1,
-          rank: 1,
-          tier: 1
-          }
+        type: "damage",
+        element: "fire",
+        power: 10.0,
+        cost: 2,
+        effect1: ["dot", "fire", 1, 1, 3],
+        effect2: "",
+        cooldown: 1,
+        rank: 1,
+        tier: 1
+        }
   end
 
   def self.warmth_1
@@ -34,7 +34,7 @@ module TierOneFireMoves
         element: "fire",
         power: 3.0,
         cost: 3,
-        effect1: ["reflect",1,3],
+        effect1: ["buff", "reflect", 1, 1, 3],
         effect2: "",
         cooldown: 2,
         rank: 1,
