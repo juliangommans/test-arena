@@ -1,8 +1,11 @@
 class ClassSuper
   attr_accessor :tot_hp, :tot_atk, :tot_def, :tot_spd
-  attr_accessor :hp, :atk, :def, :spd, :name
+  attr_accessor :hp, :atk, :def, :spd
+  attr_accessor :buffs, :debuffs, :name
 
   def initialize(name)
+    @buffs = []
+    @debuffs = []
     @spec_1 = ""
     @spec_2 = ""
     @stats = []
@@ -28,10 +31,10 @@ class ClassSuper
   def display_stats
     puts "#{@name}'s current stats are"
     puts "---------"
-    puts "#{@hp}: health"
-    puts "#{@atk}: attack"
-    puts "#{@def}: defense"
-    puts "#{@spd}: speed"
+    puts "#{@hp}/#{@tot_hp}: health"
+    puts "#{@atk}/#{@tot_atk}: attack"
+    puts "#{@def}/#{tot_def}: defense"
+    puts "#{@spd}/#{tot_spd}: speed"
     puts "---------"
   end
 

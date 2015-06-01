@@ -1,6 +1,6 @@
 require_relative '../../view/combat/combat_logs.rb'
 
-class Combat
+class CombatInitialize
 
   def initialize(player,opponent)
     @player = player
