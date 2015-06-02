@@ -6,7 +6,7 @@ end
 
 bob = Bear.new("lol")
 steve = Tiger.new("boo")
-start = Combat.new(bob,steve)
+start = CombatInitialize.new(bob,steve)
 #start.test
 start.start
 

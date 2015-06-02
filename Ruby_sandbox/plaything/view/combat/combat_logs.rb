@@ -25,6 +25,12 @@ module CombatLogs
     end
   end
 
+  def self.log_buffs(player)
+    player.buffs.each do |buff|
+      puts "you are afflicted by #{buff}"
+    end
+  end
+
   def self.log_hp(receiver)
     puts "#{receiver.name} now has #{receiver.hp.round(1)} health left."
   end

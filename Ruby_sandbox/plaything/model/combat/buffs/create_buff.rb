@@ -1,3 +1,5 @@
+require 'active_support/core_ext'
+
 class CreateBuff
 
   def initialize(action)
@@ -17,28 +19,11 @@ class CreateBuff
   end
 
   def create_buff(placeholder)
-    instance_variable_set("@#{@action[:name]}", placeholder)
+    instance_variable_set("@#{@action[:name].gsub(' ','_')}", placeholder)
   end
 
   def buff
-    instance_variable_get("@#{@action[:name]}")
+    instance_variable_get("@#{@action[:name].gsub(' ','_')}")
   end
 
 end
-
- squirt_1 = { name: "Squirt",
-        type: "damage",
-        element: "water",
-        power: 5.0,
-        cost: 2,
-        effect1: ["debuff","spd",1,1,3],
-        effect2: "",
-        cooldown: 0,
-        rank: 1,
-        tier: 1
-        }
-
-steve = CreateBuff.new(squirt_1)
-bob = []
-bob << steve.buff
-print bob

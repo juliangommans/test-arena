@@ -1,12 +1,12 @@
-require_relative "./../create_buff.rb"
+require_relative "./buffs/create_buff.rb"
 
 class ActionDetails
 
-  attr_reader :action_power, :target, :current_action_buff, :realm
+  attr_reader :action_power, :target, :current_action_buff, :action
 
   def initialize(action)
     @target = 0 # 1 = opponent, 0 = self
-    @realm = action[:realm]
+    @action = action
     @action_power = 0
     @current_action_buff = nil
     action_type
@@ -25,18 +25,16 @@ class ActionDetails
   end
 
   def damage_action
-    if @action[:effect1].length < 1 && @action[:effect2] == ""
-      @action_power -= @action[:power]
-    else
+    @action_power -= @action[:power]
+    if @action[:effect1].length > 1 || @action[:effect2] != ""
       action_effects1
       action_effects2
     end
   end
 
   def heal_action
-    if @action[:effect1].length < 1 && @action[:effect2] == ""
-      @action_power += @action[:power]
-    else
+    @action_power += @action[:power]
+    if @action[:effect1].length > 1 || @action[:effect2] != ""
       action_effects1
       action_effects2
     end
@@ -59,6 +57,10 @@ class ActionDetails
   end
 
   def action_effects2
+
+  end
+
+  def utility_action
 
   end
 

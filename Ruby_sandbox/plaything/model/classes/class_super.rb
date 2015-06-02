@@ -1,9 +1,9 @@
 class ClassSuper
   attr_accessor :tot_hp, :tot_atk, :tot_def, :tot_spd
-  attr_accessor :hp, :atk, :def, :spd, :eng, :res
+  attr_accessor :hp, :atk, :def, :spd, :eng, :res, :ap
   # hp = Health Points, atk = Attack (corporeal), def = Defense
-  # (corporeal), spd = Speed, eng = Energy (for ethereal
-  # damage and healing), res = Resilience (ethereal defense)
+  # (corporeal), spd = Speed, eng = Energy (for ethereal damage and healing),
+  # res = Resilience (ethereal defense), ap = Action Points
   attr_accessor :buffs, :debuffs, :name, :spec_1, :spec_2
 
   def initialize(name)
@@ -12,7 +12,7 @@ class ClassSuper
     @spec_2 = ""
     @stats = []
     @name = name
-    @action_points = 4
+    @ap = 4
     set_total_stats
   end
 
