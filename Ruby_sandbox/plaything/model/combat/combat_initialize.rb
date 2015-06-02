@@ -1,18 +1,22 @@
 require_relative '../../view/combat/combat_logs.rb'
+require_relative "./action_details.rb"
 
 class CombatInitialize
 
   def initialize(player,opponent)
     @player = player
     @opponent = opponent
-    @damage = 0
+    @action_power = 0
+    @round = 0
   end
 
   def start
     until victory? || defeat?
+      @round += 1
       who = fastest
-      turn(who[0])
-      turn(who[1])
+      turn(who)
+      turn(who)
+      puts "End of round #{@round}"
     end
   end
 
@@ -30,23 +34,43 @@ class CombatInitialize
     end
   end
 
-  def turn(combatant)
-    if combatant == @opponent
-      @damage = @opponent.move_list.sample[:power]
-      damage_dealt(@opponent, @player)
+  def turn(combatants)
+    each_combatant_turn(combatants[0],combatants[1])
+    each_combatant_turn(combatants[1],combatants[0])
+  end
+
+  def each_combatant_turn(dealer,receiver)
+    combatants = [dealer,receiver]
+    @move = ActionDetails.new(dealer.move_list.sample)
+    unless @move.current_action_buff == nil
+      combatants[@move.target].buffs.push(@move.current_action_buff)
+    end
+    @action_power = @move.action_power
+    damage_dealt(dealer, receiver)
+  end
+
+  def heal_or_damage(dealer, receiver)
+    if @move.target == 1
+      damage_dealt(dealer, receiver)
     else
-      move = CombatLogs.player_move_choice(@player)
-      p "============"
-      p move
-      p "============"
-      @damage = move
+      heal(dealer)
     end
   end
 
   def damage_dealt(dealer, receiver)
-    total_damage = @damage * (dealer.atk/receiver.def)
-    receiver.hp -= total_damage
+    if @move.realm == ethereal
+      total_damage = @action_power * (dealer.eng/receiver.res)
+    else
+      total_damage = @action_power * (dealer.atk/receiver.def)
+    end
+    receiver.hp += total_damage
     CombatLogs.log_hp(receiver)
+  end
+
+  def heal(dealer)
+    total_healing = (@action_power * (dealer.energy/((dealer.def+dealer.res)/2)))
+    dealer.hp += total_healing
+    CombatLogs.log_hp(dealer)
   end
 
   # def options

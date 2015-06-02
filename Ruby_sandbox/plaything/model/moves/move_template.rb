@@ -3,6 +3,7 @@ module ThisMoveList
   def move
     @var = { name: "",
         type: "",
+        realm: "",
         element: "",
         power: 0,
         cost: 0,
@@ -17,6 +18,8 @@ module ThisMoveList
 end
 
 #### Name = move name
+#### Realm = "corporeal"(physical) or "ethereal"(special) i.e. what stats
+#### the move uses and multiplies/divides by
 #### Type = damage, heal or utility
 #### Element = which element
 #### Power = amount of damage or healing done
