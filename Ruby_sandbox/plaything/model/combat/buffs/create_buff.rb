@@ -1,9 +1,6 @@
-require_relative './buff.rb'
 require 'active_support/core_ext'
 
 class CreateBuff
-
-  attr_accessor :name, :type, :stat, :amount, :stacks, :duration, :effect, :power
 
   def initialize(action)
     @action = action
