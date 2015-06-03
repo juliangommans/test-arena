@@ -8,7 +8,7 @@ module ThisMoveList
         power: 0,
         cost: 0,
         effect1: ["","",0,0,0],
-        effect2: "",
+        effect2: ["","",0,0,0],
         cooldown: 0,
         rank: 0,
         tier: 0

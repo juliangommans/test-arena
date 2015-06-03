@@ -1,6 +1,9 @@
+require_relative './buff.rb'
 require 'active_support/core_ext'
 
 class CreateBuff
+
+  attr_accessor :name, :type, :stat, :amount, :stacks, :duration, :effect, :power
 
   def initialize(action)
     @action = action
@@ -15,6 +18,8 @@ class CreateBuff
     placeholder[:amount] = @action[:effect1][2]
     placeholder[:stacks] = @action[:effect1][3]
     placeholder[:duration] = @action[:effect1][4]
+    placeholder[:effect] = @action[:effect2]
+    placeholder[:power] = @action[:power]
     create_buff(placeholder)
   end
 

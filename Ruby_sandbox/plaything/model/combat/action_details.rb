@@ -27,20 +27,18 @@ class ActionDetails
   def damage_action
     @action_power -= @action[:power]
     if @action[:effect1].length > 1 || @action[:effect2] != ""
-      action_effects1
-      action_effects2
+      action_effects
     end
   end
 
   def heal_action
     @action_power += @action[:power]
     if @action[:effect1].length > 1 || @action[:effect2] != ""
-      action_effects1
-      action_effects2
+      action_effects
     end
   end
 
-  def action_effects1
+  def action_effects
     @current_action_buff = CreateBuff.new(@action)
     set_buff_target
   end
@@ -52,26 +50,22 @@ class ActionDetails
       @target = 1
     elsif @action[:effect1][0] == "cure"
       @target = 0
-      cure(@current_action_buff)
+      #cure(@current_action_buff)
     end
-  end
-
-  def action_effects2
-
   end
 
   def utility_action
-
+    @current_action_buff = CreateBuff.new(@action)
+    set_buff_target
   end
 
-  def cure(buff)
-    if buff.buff[:stat] == "dot"
-      remove_dot(@target)
-    elsif buff.buff[:stat] == "debuff"
-      remove_debuff(@target)
-    end
-  end
-
+  # def cure(buff)
+  #   if buff.buff[:stat] == "dot"
+  #     remove_dot(@target)
+  #   elsif buff.buff[:stat] == "debuff"
+  #     remove_debuff(@target)
+  #   end
+  # end
 
 
 end

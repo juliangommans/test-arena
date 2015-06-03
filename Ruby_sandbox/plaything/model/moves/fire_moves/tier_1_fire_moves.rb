@@ -35,10 +35,10 @@ module TierOneFireMoves
         type: "utility",
         realm: "ethereal",
         element: "fire",
-        power: 0,
+        power: 3,
         cost: 3,
-        effect1: ["buff", "reflect", -3, 1, 3],
-        effect2: "",
+        effect1: ["buff", "def", 1, 1, 3],
+        effect2: "reflect",
         cooldown: 2,
         rank: 1,
         tier: 1
