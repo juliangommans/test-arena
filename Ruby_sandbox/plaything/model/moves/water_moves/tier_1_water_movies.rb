@@ -22,7 +22,7 @@ module TierOneWaterMoves
         element: "water",
         power: 0,
         cost: 1,
-        effect1: ["cure","dot",1,1,0],
+        effect1: ["cure","dot",1,1,-1],
         effect2: "",
         cooldown: 1,
         rank: 1,

@@ -12,6 +12,16 @@ class Tiger < ClassSuper
     @stats << @eng = 20.0
     @stats << @res = 20.0
     @move_list = [TierOneWaterMoves.ice_slash_1, TierOneWaterMoves.chill_blaines_1, TierOneWaterMoves.squirt_1, TierOneWaterMoves.splash_1, TierOneWaterMoves.douse_1]
+    set_total_stats
+  end
+
+  def set_total_stats
+    @tot_hp = @hp
+    @tot_atk = @atk
+    @tot_def = @def
+    @tot_eng = @eng
+    @tot_res = @res
+    @tot_spd = @spd
   end
 
 end

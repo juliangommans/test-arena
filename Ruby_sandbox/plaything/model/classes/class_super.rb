@@ -1,5 +1,5 @@
 class ClassSuper
-  attr_accessor :tot_hp, :tot_atk, :tot_def, :tot_spd
+  attr_accessor :tot_hp, :tot_atk, :tot_def, :tot_eng, :tot_res, :tot_spd
   attr_accessor :hp, :atk, :def, :spd, :eng, :res, :ap
   # hp = Health Points, atk = Attack (corporeal), def = Defense
   # (corporeal), spd = Speed, eng = Energy (for ethereal damage and healing),
@@ -13,30 +13,29 @@ class ClassSuper
     @stats = []
     @name = name
     @ap = 4
-    set_total_stats
-  end
-
-  def set_total_stats
-    @tot_hp = @hp
-    @tot_atk = @atk
-    @tot_def = @def
-    @tot_spd = @spd
   end
 
   def stat_reset
-    @hp = @tot_hp
     @atk = @tot_atk
     @def = @tot_def
+    @eng = @tot_eng
+    @res = @tot_res
     @spd = @tot_spd
+  end
+
+  def hp_reset
+    @hp = @tot_hp
   end
 
   def display_stats
     puts "#{@name}'s current stats are"
     puts "---------"
-    puts "#{@hp}/#{@tot_hp}: health"
-    puts "#{@atk}/#{@tot_atk}: attack"
-    puts "#{@def}/#{tot_def}: defense"
-    puts "#{@spd}/#{tot_spd}: speed"
+    puts "#{@hp.round(1)}/#{@tot_hp.to_i}: health"
+    puts "#{@atk.round(1)}/#{@tot_atk.to_i}: attack"
+    puts "#{@def.round(1)}/#{tot_def.to_i}: defense"
+    puts "#{@eng.round(1)}/#{tot_eng.to_i}: energy"
+    puts "#{@res.round(1)}/#{tot_res.to_i}: resilience"
+    puts "#{@spd.round(1)}/#{tot_spd.to_i}: speed"
     puts "---------"
   end
 

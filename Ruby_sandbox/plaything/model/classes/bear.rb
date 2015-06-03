@@ -12,6 +12,16 @@ class Bear < ClassSuper
     @stats << @eng = 15.0
     @stats << @res = 30.0
     @move_list = [TierOneFireMoves.singe_1, TierOneFireMoves.warmth_1, TierOneFireMoves.firey_shell_1, TierOneFireMoves.molten_swipe_1, TierOneFireMoves.pyro_slap_1]
+    set_total_stats
+  end
+
+  def set_total_stats
+    @tot_hp = @hp
+    @tot_atk = @atk
+    @tot_def = @def
+    @tot_eng = @eng
+    @tot_res = @res
+    @tot_spd = @spd
   end
 
 end
