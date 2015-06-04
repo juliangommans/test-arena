@@ -4,10 +4,11 @@ class ClassSuper
   # hp = Health Points, atk = Attack (corporeal), def = Defense
   # (corporeal), spd = Speed, eng = Energy (for ethereal damage and healing),
   # res = Resilience (ethereal defense), ap = Action Points
-  attr_accessor :buffs, :debuffs, :name, :spec_1, :spec_2
+  attr_accessor :buffs, :name, :spec_1, :spec_2, :cooldowns
 
   def initialize(name)
     @buffs = []
+    @cooldowns = []
     @spec_1 = ""
     @spec_2 = ""
     @stats = []

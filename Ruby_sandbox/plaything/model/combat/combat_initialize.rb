@@ -26,6 +26,7 @@ class CombatInitialize < UtilityAction
       puts "========"
       resolve_round
     end
+      resolve_buffs
       puts "========"
       puts "Final stat summary"
       puts "========"
@@ -33,7 +34,10 @@ class CombatInitialize < UtilityAction
   end
 
   def finish
-    @player.stat_reset
+    @combatants.each do |combatant|
+      combatant.stat_reset
+      combatant.hp_reset
+    end
   end
 
   def fastest
@@ -83,7 +87,7 @@ class CombatInitialize < UtilityAction
     elsif @move.action[:type] == "heal"
       heal
     else
-      puts "#{@move.action[:name]} is a u(seless)tility ability"
+      utility_checker
     end
   end
 
@@ -127,11 +131,18 @@ class CombatInitialize < UtilityAction
         if buff[:stacks] < 5
           buff[:stacks] += @move.current_action_buff.buff[:stacks]
             buff[:stacks] = 5 if buff[:stacks] > 5
+            @combatants[@move.target].buffs.delete(buff) if buff[:stacks] < 1
           buff[:duration] = @move.current_action_buff.buff[:duration]
         end
       end
     end
     buff_checker
+  end
+
+  def utility_checker
+    sort_utilities(@move.current_action_buff.buff)
+    puts "#{@combatants[0].name} used #{@move.action[:name]}: "
+    puts "-------------------"
   end
 
   def check_secondary_effects
@@ -151,8 +162,9 @@ class CombatInitialize < UtilityAction
     @combatants.each do |combatant|
       combatant.ap = 4
       combatant.stat_reset
-      puts "#{combatant.name} #{combatant.buffs}"
-      puts combatant.buffs.count
+      print "#{combatant.name}"
+      puts combatant.buffs
+      puts " "
     end
   end
 

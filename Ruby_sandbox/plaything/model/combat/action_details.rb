@@ -20,7 +20,7 @@ class ActionDetails
       @target = 0
       heal_action
     elsif @action[:type] == "utility"
-      utility_action
+      utility_effects
     end
   end
 
@@ -50,22 +50,14 @@ class ActionDetails
       @target = 1
     elsif @action[:effect1][0] == "cure"
       @target = 0
-      #cure(@current_action_buff)
     end
   end
 
-  def utility_action
+  def utility_effects
     @current_action_buff = CreateBuff.new(@action)
     set_buff_target
   end
 
-  # def cure(buff)
-  #   if buff.buff[:stat] == "dot"
-  #     remove_dot(@target)
-  #   elsif buff.buff[:stat] == "debuff"
-  #     remove_debuff(@target)
-  #   end
-  # end
 
 
 end
