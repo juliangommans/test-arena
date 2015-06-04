@@ -93,9 +93,9 @@ class CombatInitialize < UtilityAction
 
   def damage_dealt
     if @move.action[:realm] == "ethereal"
-      total_damage = @action_power * (@combatants[0].eng/@combatants[1].res)
+      total_damage = @action_power * ((@combatants[0].eng/@combatants[1].res)/2)
     else
-      total_damage = @action_power * (@combatants[0].atk/@combatants[1].def)
+      total_damage = @action_power * ((@combatants[0].atk/@combatants[1].def)/2)
     end
     @combatants[1].hp += total_damage
     print "#{@combatants[0].name} used #{@move.action[:name]}: "
@@ -131,7 +131,6 @@ class CombatInitialize < UtilityAction
         if buff[:stacks] < 5
           buff[:stacks] += @move.current_action_buff.buff[:stacks]
             buff[:stacks] = 5 if buff[:stacks] > 5
-            @combatants[@move.target].buffs.delete(buff) if buff[:stacks] < 1
           buff[:duration] = @move.current_action_buff.buff[:duration]
         end
       end
@@ -162,9 +161,6 @@ class CombatInitialize < UtilityAction
     @combatants.each do |combatant|
       combatant.ap = 4
       combatant.stat_reset
-      print "#{combatant.name}"
-      puts combatant.buffs
-      puts " "
     end
   end
 
@@ -172,6 +168,9 @@ class CombatInitialize < UtilityAction
     if @combatants
       @combatants.each do |combatant|
         expired_buffs(combatant)
+        print "#{combatant.name}"
+        puts combatant.buffs
+        puts " "
         combatant.buffs.each do |buff|
           resolve_dots(combatant,buff)
           resolve_stat_buffs(combatant,buff)
@@ -201,6 +200,7 @@ class CombatInitialize < UtilityAction
 
   def expired_buffs(combatant)
     combatant.buffs.delete_if {|buff| buff[:duration] < 0}
+    combatant.buffs.delete_if {|buff| buff[:stacks] < 1}
   end
 
   ########### ALL PURPOSE ###########

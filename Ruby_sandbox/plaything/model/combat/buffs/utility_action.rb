@@ -21,7 +21,13 @@ class UtilityAction
   def cure(buff)
     unless @combatants[0].buffs.length < 1
       removed_buff = select_buff_to_cure(buff)
-      @combatants[0].buffs.delete(removed_buff)
+      unless removed_buff == nil
+        puts removed_buff
+        puts "-- above = cured -- below = cure --"
+        puts buff
+        removed_buff[:stacks] -= buff[:stacks]
+      end
+      # @combatants[0].buffs.delete(removed_buff)
     end
   end
 
