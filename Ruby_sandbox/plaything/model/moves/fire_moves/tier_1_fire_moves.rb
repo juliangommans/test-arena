@@ -10,6 +10,7 @@ module TierOneFireMoves
         effect1: ["dot", "hp", -1, 1, 3],
         effect2: "",
         cooldown: 1,
+        cooldown_total: 1,
         rank: 1,
         tier: 1
         }
@@ -25,6 +26,7 @@ module TierOneFireMoves
         effect1: [],
         effect2: "",
         cooldown: 0,
+        cooldown_total: 0,
         rank: 1,
         tier: 1
         }
@@ -40,6 +42,7 @@ module TierOneFireMoves
         effect1: ["buff", "def", 1, 1, 3],
         effect2: "reflect",
         cooldown: 2,
+        cooldown_total: 2,
         rank: 1,
         tier: 1
       }
@@ -55,6 +58,7 @@ module TierOneFireMoves
         effect1: ["debuff", "def", -1, 1, 3],
         effect2: "",
         cooldown: 0,
+        cooldown_total: 0,
         rank: 1,
         tier: 1
       }
@@ -70,6 +74,7 @@ module TierOneFireMoves
         effect1: [],
         effect2: "",
         cooldown: 1,
+        cooldown_total: 1,
         rank: 1,
         tier: 1
       }

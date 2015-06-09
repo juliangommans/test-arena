@@ -1,6 +1,8 @@
 require_relative '../../view/combat/combat_logs.rb'
 require_relative "./action_details.rb"
 require_relative "./buffs/utility_action.rb"
+require_relative "./cooldowns.rb"
+
 
 class CombatInitialize < UtilityAction
 
@@ -69,6 +71,7 @@ class CombatInitialize < UtilityAction
     unless @move.current_action_buff == nil
       buff_update
     end
+    Cooldowns.cooldown(@combatants[0], @move.action)
     @action_power = @move.action_power
     heal_or_damage
   end
@@ -154,13 +157,18 @@ class CombatInitialize < UtilityAction
     end
   end
 
-
-
   ########### Resolving ###########
   def resolve_round
     @combatants.each do |combatant|
       combatant.ap = 4
       combatant.stat_reset
+      puts "---- #{combatant.name} CDS -----"
+      puts combatant.cooldowns
+      puts "---- #{combatant.name} MOVES -----"
+      puts combatant.move_list
+      puts " ________________________"
+      Cooldowns.check_cds(combatant)
+      puts " ________________________"
     end
   end
 
@@ -168,9 +176,9 @@ class CombatInitialize < UtilityAction
     if @combatants
       @combatants.each do |combatant|
         expired_buffs(combatant)
-        print "#{combatant.name}"
-        puts combatant.buffs
-        puts " "
+        # print "#{combatant.name}"
+        # puts combatant.buffs
+        # puts " "
         combatant.buffs.each do |buff|
           resolve_dots(combatant,buff)
           resolve_stat_buffs(combatant,buff)

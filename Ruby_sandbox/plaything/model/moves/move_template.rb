@@ -10,6 +10,7 @@ module ThisMoveList
         effect1: ["","",0,0,0],
         effect2: ["","",0,0,0],
         cooldown: 0,
+        cooldown_total: 0,
         rank: 0,
         tier: 0
         }
@@ -34,6 +35,7 @@ end
 #### Effect2 = custom effect
 #### Cooldown = how many turns till used again, 0 means as many times
 #as you can in a turn, 1 means once a turn, 2 = every second turn etc.
+#### Cooldown_total = what the cooldown resets too
 #### Rank = what rank this ability is
 #(player can rank up several abilities twice i.e. to 3)
 #### Tier = what teir it falls into, 1 - 2 - 3

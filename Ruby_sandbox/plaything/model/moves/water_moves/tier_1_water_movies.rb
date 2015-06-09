@@ -10,6 +10,7 @@ module TierOneWaterMoves
         effect1: [],
         effect2: "",
         cooldown: 2,
+        cooldown_total: 2,
         rank: 1,
         tier: 1
         }
@@ -25,6 +26,7 @@ module TierOneWaterMoves
         effect1: ["cure","dot",1,1,-1],
         effect2: "",
         cooldown: 1,
+        cooldown_total: 1,
         rank: 1,
         tier: 1
         }
@@ -40,6 +42,7 @@ module TierOneWaterMoves
         effect1: ["debuff","spd",-1,1,3],
         effect2: "",
         cooldown: 0,
+        cooldown_total: 0,
         rank: 1,
         tier: 1
         }
@@ -55,6 +58,7 @@ module TierOneWaterMoves
         effect1: [],
         effect2: "",
         cooldown: 2,
+        cooldown_total: 2,
         rank: 1,
         tier: 1
         }
@@ -70,6 +74,7 @@ module TierOneWaterMoves
         effect1: ["dot","hp",-2,1,3],
         effect2: "",
         cooldown: 1,
+        cooldown_total: 1,
         rank: 1,
         tier: 1
         }
