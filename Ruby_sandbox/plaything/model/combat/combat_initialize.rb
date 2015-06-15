@@ -65,9 +65,12 @@ class CombatInitialize < UtilityAction
 
   def each_combatant_turn(dealer,receiver)
     @combatants = [dealer,receiver]
-    @move = ActionDetails.new(dealer.move_list.sample)
-    # action_points_checker(dealer,receiver)
-    dealer.ap -= @move.action[:cost]
+    #@move = ActionDetails.new(dealer.move_list.sample)
+    action_points_checker(dealer)
+  end
+
+  def after_move_select
+     @combatants[0].ap -= @move.action[:cost]
     unless @move.current_action_buff == nil
       buff_update
     end
@@ -76,11 +79,25 @@ class CombatInitialize < UtilityAction
     heal_or_damage
   end
 
+  def action_points_checker(dealer)
+    if select_move(dealer) == nil
+      dealer.ap -= 4
+    else
+      @move = ActionDetails.new(select_move(dealer))
+      after_move_select
+    end
+    # until dealer.ap >= @move.action[:cost]
+    #   @move = ActionDetails.new(dealer.move_list.sample)
+    #   puts "#{@move.action[:name]} costs: #{@move.action[:cost]} ap"
+    #   puts "*****************"
+    # end
+  end
 
-
-  # def action_points_checker(dealer)
-  #   dealer.ap <= @move.action[:cost]
-  # end
+  def select_move(dealer)
+    random_move = dealer.move_list.shuffle
+    selected = random_move.find { |move| move[:cost] <= dealer.ap }
+    return selected
+  end
 
   ########### HEAL/DAMAGE OF ACTION ###########
 

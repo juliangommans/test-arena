@@ -27,7 +27,6 @@ class UtilityAction
         puts buff
         removed_buff[:stacks] -= buff[:stacks]
       end
-      # @combatants[0].buffs.delete(removed_buff)
     end
   end
 

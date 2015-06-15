@@ -33,15 +33,19 @@ module Cooldowns
     combatant.cooldowns.each do |cd|
       puts "this cooldown #{cd[:name]} is currently on cooldown for #{cd[:cooldown]} turns"
       if cd[:cooldown] <= 1
-        return_cd(combatant, cd)
-        reset_cd(combatant, cd)
-        puts "#{cd[:name]} is now off cooldown"
+        expire_cd(combatant, cd)
       else
         cd[:cooldown] -= 1
         puts "#{cd[:name]} now has #{cd[:cooldown]} turns left"
       end
     end
     off_cd(combatant)
+  end
+
+  def self.expire_cd(combatant, cd)
+    return_cd(combatant, cd)
+    reset_cd(combatant, cd)
+    puts "#{cd[:name]} is now off cooldown"
   end
 
   def self.cooldown(combatant, move)
