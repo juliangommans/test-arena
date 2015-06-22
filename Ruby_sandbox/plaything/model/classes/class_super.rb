@@ -1,19 +1,28 @@
-class ClassSuper
+# Dir['../passives/*.rb'].each do |f|
+#     require_relative f
+# end
+require_relative "../passives/nature.rb"
+
+class ClassSuper < Nature
   attr_accessor :tot_hp, :tot_atk, :tot_def, :tot_eng, :tot_res, :tot_spd
-  attr_accessor :hp, :atk, :def, :spd, :eng, :res, :ap
+  attr_accessor :hp, :atk, :def, :spd, :eng, :res, :ap, :nature
   # hp = Health Points, atk = Attack (corporeal), def = Defense
   # (corporeal), spd = Speed, eng = Energy (for ethereal damage and healing),
   # res = Resilience (ethereal defense), ap = Action Points
-  attr_accessor :buffs, :name, :spec_1, :spec_2, :cooldowns
+  attr_accessor :buffs, :name, :nature, :spec_2, :cooldowns, :crit_chance, :combo_points, :crit_power
 
   def initialize(name)
     @buffs = []
     @cooldowns = []
-    @spec_1 = ""
-    @spec_2 = ""
+    # @spec_1 = ""
+    # @spec_2 = ""
     @stats = []
     @name = name
     @ap = 4
+    # @nature = ''
+    @crit_power = 1.5
+    @crit_chance = 0
+    @combo_points = 0
   end
 
   def stat_reset
@@ -40,8 +49,8 @@ class ClassSuper
     puts "---------"
   end
 
-  def set_specialization_1(spec)
-    @spec_1 = spec
+  def set_nature(nature)
+    @nature = nature
   end
 
   def set_specialization_2(spec)

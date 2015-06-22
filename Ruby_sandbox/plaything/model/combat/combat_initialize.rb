@@ -14,14 +14,15 @@ class CombatInitialize < UtilityAction
   end
 
   def start
-    #until victory? || defeat?
-    3.times do
+    until victory? || defeat?
+    # 3.times do
       @round += 1
       resolve_buffs
       stat_summary
       puts "========"
       puts "Beggining of round #{@round}"
       puts "========"
+      check_passives
       turn(fastest)
       puts "========"
       puts "End of round #{@round}"
@@ -40,6 +41,11 @@ class CombatInitialize < UtilityAction
       combatant.stat_reset
       combatant.hp_reset
     end
+  end
+
+  def check_passives
+    @player.get_nature(@player)
+    @opponent.get_nature(@opponent)
   end
 
   def fastest
@@ -65,19 +71,20 @@ class CombatInitialize < UtilityAction
 
   def each_combatant_turn(dealer,receiver)
     @combatants = [dealer,receiver]
-    #@move = ActionDetails.new(dealer.move_list.sample)
     action_points_checker(dealer)
   end
 
   def after_move_select
-     @combatants[0].ap -= @move.action[:cost]
+    @combatants[0].ap -= @move.action[:cost]
     unless @move.current_action_buff == nil
       buff_update
     end
     Cooldowns.cooldown(@combatants[0], @move.action)
     @action_power = @move.action_power
+    critical_strike
     heal_or_damage
   end
+
 
   def action_points_checker(dealer)
     if select_move(dealer) == nil
@@ -97,6 +104,16 @@ class CombatInitialize < UtilityAction
     random_move = dealer.move_list.shuffle
     selected = random_move.find { |move| move[:cost] <= dealer.ap }
     return selected
+  end
+
+  def critical_strike
+    @combatants[0].crit_chance += @move.action[:cost]
+    if @combatants[0].crit_chance >= 10
+      @combatants[0].crit_chance = 0
+      @action_power = @action_power * @combatants[0].crit_power
+      puts "#{@combatants[0].name} got a critical strike with #{@move.action[:name]}"
+    end
+    puts "#{@combatants[0].name} critical strike counter is: #{@combatants[0].crit_chance}/10"
   end
 
   ########### HEAL/DAMAGE OF ACTION ###########
@@ -179,10 +196,10 @@ class CombatInitialize < UtilityAction
     @combatants.each do |combatant|
       combatant.ap = 4
       combatant.stat_reset
-      puts "---- #{combatant.name} CDS -----"
-      puts combatant.cooldowns
-      puts "---- #{combatant.name} MOVES -----"
-      puts combatant.move_list
+      # puts "---- #{combatant.name} CDS -----"
+      # puts combatant.cooldowns
+      # puts "---- #{combatant.name} MOVES -----"
+      # puts combatant.move_list
       puts " ________________________"
       Cooldowns.check_cds(combatant)
       puts " ________________________"

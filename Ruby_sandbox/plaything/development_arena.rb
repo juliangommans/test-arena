@@ -5,9 +5,10 @@ Dir['./**/*.rb'].each do |f|
 end
 
 bob = Bear.new("ME")
+bob.set_nature("hibernation")
 steve = Tiger.new("opponent")
+steve.set_nature("killer instinct")
 start = CombatInitialize.new(bob,steve)
-#start.test
 start.start
 
 
