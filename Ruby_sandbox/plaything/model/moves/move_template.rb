@@ -1,19 +1,19 @@
 module ThisMoveList
 
   def move
-    @var = { name: "",
-        type: "",
-        realm: "",
-        element: "",
-        power: 0,
-        cost: 0,
-        effect1: ["","",0,0,0],
-        effect2: "",
-        cooldown: 0,
-        cooldown_total: 0,
-        rank: 0,
-        tier: 0
-        }
+    { name: "",
+      type: "",
+      realm: "",
+      element: "",
+      power: 0,
+      cost: 0,
+      effect1: ["","",0,0,0],
+      effect2: "",
+      cooldown: 0,
+      cooldown_total: 0,
+      rank: 0,
+      tier: 0
+    }
   end
 
 end

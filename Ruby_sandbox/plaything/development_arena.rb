@@ -6,8 +6,8 @@ end
 
 bob = Bear.new("ME")
 bob.set_nature("hibernation")
-steve = Tiger.new("opponent")
-steve.set_nature("killer instinct")
+steve = Eagle.new("opponent")
+steve.set_nature("agility")
 start = CombatInitialize.new(bob,steve)
 start.start
 

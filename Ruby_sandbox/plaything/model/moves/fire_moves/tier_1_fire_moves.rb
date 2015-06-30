@@ -1,7 +1,7 @@
 module TierOneFireMoves
 
   def self.singe_1
-    @singe_1 = { name: "Singe",
+      { name: "Singe",
         type: "damage",
         realm: "ethereal",
         element: "fire",
@@ -13,11 +13,11 @@ module TierOneFireMoves
         cooldown_total: 1,
         rank: 1,
         tier: 1
-        }
+      }
   end
 
   def self.warmth_1
-    @warmth_1 = { name: "Warmth",
+      { name: "Warmth",
         type: "heal",
         realm: "ethereal",
         element: "fire",
@@ -29,7 +29,7 @@ module TierOneFireMoves
         cooldown_total: 0,
         rank: 1,
         tier: 1
-        }
+      }
   end
 
   def self.firey_shell_1
@@ -49,7 +49,7 @@ module TierOneFireMoves
   end
 
   def self.molten_swipe_1
-    @molten_swipe_1 = { name: "Molten swipe",
+      { name: "Molten swipe",
         type: "damage",
         realm: "corporeal",
         element: "fire",
@@ -65,7 +65,7 @@ module TierOneFireMoves
   end
 
   def self.pyro_slap_1
-    @pyro_slap_1 = { name: "Pyro slap",
+      { name: "Pyro slap",
         type: "damage",
         realm: "corporeal",
         element: "fire",
@@ -81,19 +81,19 @@ module TierOneFireMoves
   end
 
   def self.lava_jet_1
-    @var = { name: "Lava Jet",
+      { name: "Lava Jet",
         type: "damage",
         realm: "ethereal",
         element: "fire",
         power: 40,
         cost: 2,
-        effect1: ["","",0,0,0],
+        effect1: [],
         effect2: "",
         cooldown: 3,
         cooldown_total: 3,
         rank: 1,
         tier: 1
-        }
+      }
   end
 
 end
