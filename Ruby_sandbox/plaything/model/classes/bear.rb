@@ -11,7 +11,7 @@ class Bear < ClassSuper
     @stats << @spd = 20.0
     @stats << @eng = 15.0
     @stats << @res = 30.0
-    @move_list = [TierOneFireMoves.singe_1, TierOneFireMoves.warmth_1, TierOneFireMoves.firey_shell_1, TierOneFireMoves.molten_swipe_1, TierOneFireMoves.pyro_slap_1]
+    @move_list = [TierOneFireMoves.singe_1, TierOneFireMoves.warmth_1, TierOneFireMoves.firey_shell_1, TierOneFireMoves.molten_swipe_1, TierOneFireMoves.pyro_slap_1, TierOneFireMoves.lava_jet_1]
     set_total_stats
   end
 

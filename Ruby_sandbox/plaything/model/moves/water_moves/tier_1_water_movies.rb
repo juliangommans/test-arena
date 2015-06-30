@@ -80,4 +80,20 @@ module TierOneWaterMoves
         }
   end
 
+  def self.icy_shard_1
+    @var = { name: "Icy Shard",
+        type: "damage",
+        realm: "corporeal",
+        element: "water",
+        power: 25,
+        cost: 2,
+        effect1: [],
+        effect2: "",
+        cooldown: 0,
+        cooldown_total: 0,
+        rank: 1,
+        tier: 1
+        }
+  end
+
 end

@@ -17,12 +17,12 @@ class CombatInitialize < UtilityAction
     until victory? || defeat?
     # 3.times do
       @round += 1
+      check_passives
       resolve_buffs
       stat_summary
       puts "========"
       puts "Beggining of round #{@round}"
       puts "========"
-      check_passives
       turn(fastest)
       puts "========"
       puts "End of round #{@round}"
@@ -109,9 +109,13 @@ class CombatInitialize < UtilityAction
   def critical_strike
     @combatants[0].crit_chance += @move.action[:cost]
     if @combatants[0].crit_chance >= 10
-      @combatants[0].crit_chance = 0
-      @action_power = @action_power * @combatants[0].crit_power
-      puts "#{@combatants[0].name} got a critical strike with #{@move.action[:name]}"
+      if @move.action[:type] == "damage"
+        @combatants[0].crit_chance = 0
+        @action_power = @action_power * @combatants[0].crit_power
+        puts "#{@combatants[0].name} got a critical strike with #{@move.action[:name]}"
+      else
+        @combatants[0].crit_chance = 10
+      end
     end
     puts "#{@combatants[0].name} critical strike counter is: #{@combatants[0].crit_chance}/10"
   end

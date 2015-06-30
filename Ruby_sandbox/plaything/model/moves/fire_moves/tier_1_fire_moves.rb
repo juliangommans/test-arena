@@ -80,5 +80,21 @@ module TierOneFireMoves
       }
   end
 
+  def self.lava_jet_1
+    @var = { name: "Lava Jet",
+        type: "damage",
+        realm: "ethereal",
+        element: "fire",
+        power: 40,
+        cost: 2,
+        effect1: ["","",0,0,0],
+        effect2: "",
+        cooldown: 3,
+        cooldown_total: 3,
+        rank: 1,
+        tier: 1
+        }
+  end
+
 end
 

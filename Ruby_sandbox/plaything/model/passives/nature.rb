@@ -11,8 +11,8 @@ class Nature
   end
 
   def killer_instinct(combatant)
-    combatant.crit_power = 3
-    combatant.atk = combatant.tot_atk * 0.1
+    combatant.crit_power = 2
+    combatant.atk = combatant.tot_atk * 1.1
   end
 
   def hibernation(combatant)
