@@ -1,15 +1,15 @@
 class UtilityAction
 
-  def find_effect(buff)
+  def find_effect(dealer, receiver, buff)
     if buff[:effect] == "reflect"
-      reflect(buff)
+      reflect(dealer, buff)
     end
   end
 
-  def reflect(buff)
+  def reflect(dealer, buff)
     damage = buff[:power] * buff[:stacks]
-    @combatants[0].hp -= damage
-    puts "#{@combatants[0].name} has #{damage} damage reflected to them"
+    dealer.hp -= damage
+    puts "#{dealer.name} has #{damage} damage reflected to them"
   end
 
   def sort_utilities(buff)

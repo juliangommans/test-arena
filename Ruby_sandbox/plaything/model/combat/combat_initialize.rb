@@ -15,10 +15,9 @@ class CombatInitialize < UtilityAction
 
   def start
     until victory? || defeat?
-    # 3.times do
       @round += 1
-      check_passives
       resolve_buffs
+      check_passives
       stat_summary
       puts "========"
       puts "Beggining of round #{@round}"
@@ -30,6 +29,7 @@ class CombatInitialize < UtilityAction
       resolve_round
     end
       resolve_buffs
+      check_passives
       puts "========"
       puts "Final stat summary"
       puts "========"
@@ -44,8 +44,11 @@ class CombatInitialize < UtilityAction
   end
 
   def check_passives
-    @player.get_nature(@player)
-    @opponent.get_nature(@opponent)
+    [@player, @opponent].each do |combatant|
+      combatant.passives.each do |passive|
+        Nature.get_nature(combatant, passive)
+      end
+    end
   end
 
   def fastest
@@ -93,11 +96,6 @@ class CombatInitialize < UtilityAction
       @move = ActionDetails.new(select_move(dealer))
       after_move_select
     end
-    # until dealer.ap >= @move.action[:cost]
-    #   @move = ActionDetails.new(dealer.move_list.sample)
-    #   puts "#{@move.action[:name]} costs: #{@move.action[:cost]} ap"
-    #   puts "*****************"
-    # end
   end
 
   def select_move(dealer)
@@ -112,12 +110,12 @@ class CombatInitialize < UtilityAction
       if @move.action[:type] == "damage"
         @combatants[0].crit_chance = 0
         @action_power = @action_power * @combatants[0].crit_power
-        puts "#{@combatants[0].name} got a critical strike with #{@move.action[:name]}"
+        # puts "#{@combatants[0].name} got a critical strike with #{@move.action[:name]}"
       else
         @combatants[0].crit_chance = 10
       end
     end
-    puts "#{@combatants[0].name} critical strike counter is: #{@combatants[0].crit_chance}/10"
+    # puts "#{@combatants[0].name} critical strike counter is: #{@combatants[0].crit_chance}/10"
   end
 
   ########### HEAL/DAMAGE OF ACTION ###########
@@ -147,12 +145,14 @@ class CombatInitialize < UtilityAction
   end
 
   def heal
-    total_healing = (@action_power * (@combatants[0].eng/((@combatants[0].def+@combatants[0].res)/2)))
-    @combatants[0].hp += total_healing
-    print "#{@combatants[0].name} used #{@move.action[:name]}: "
-    puts "#{@combatants[0].name} received #{total_healing.round(1)} health"
-    CombatLogs.log_hp(@combatants[0])
-    puts "-------------------"
+    unless @combatants[0].tot_hp <= @combatants[0].hp
+      total_healing = (@action_power * (@combatants[0].eng/(@combatants[0].def+@combatants[0].res)))
+      @combatants[0].hp += total_healing
+      print "#{@combatants[0].name} used #{@move.action[:name]}: "
+      puts "#{@combatants[0].name} received #{total_healing.round(1)} health"
+      CombatLogs.log_hp(@combatants[0])
+      puts "-------------------"
+    end
   end
 
   ########### BUFFS ###########
@@ -189,7 +189,7 @@ class CombatInitialize < UtilityAction
     @combatants.each do |combatant|
       combatant.buffs.each do |buff|
         unless buff[:effect].length < 1
-          find_effect(buff)
+          find_effect(@combatants[0], @combatants[1], buff)
         end
       end
     end
@@ -214,9 +214,10 @@ class CombatInitialize < UtilityAction
     if @combatants
       @combatants.each do |combatant|
         expired_buffs(combatant)
-        # print "#{combatant.name}"
-        # puts combatant.buffs
-        # puts " "
+        puts " "
+        print "#{combatant.name}"
+        puts combatant.buffs
+        puts " "
         combatant.buffs.each do |buff|
           resolve_dots(combatant,buff)
           resolve_stat_buffs(combatant,buff)
