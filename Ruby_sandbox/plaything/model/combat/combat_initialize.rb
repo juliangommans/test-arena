@@ -186,7 +186,6 @@ class CombatInitialize < UtilityAction
   end
 
   def check_secondary_effects
-    #logic here needs work, currently just reflecting off everything for everyone.
     @combatants.each do |combatant|
       combatant.buffs.each do |buff|
         unless buff[:effect].length < 1
